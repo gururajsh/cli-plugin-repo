@@ -20,7 +20,7 @@ jobs:
 
         go install github.com/onsi/ginkgo/ginkgo@latest
 
-        cd $GOPATH/src/code.cloudfoundry.org/cli-plugin-repo
+        # cd $GOPATH/src/code.cloudfoundry.org/cli-plugin-repo
 
         BINARY_VALIDATION=false bin/test
 
