@@ -4,7 +4,7 @@ on:
   workflow_dispatch:
   push:
     branches:
-      - 'oss-migration-test'
+      - 'oss-migration*'
 jobs:
   # test:
   #   runs-on: ubuntu-latest
