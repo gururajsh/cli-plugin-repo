@@ -14,12 +14,7 @@
   trap printStatus EXIT
 
   # Clean up old .a files in GOPATH
-  # It seems like `go clean` should do this but ... not so much
-  if [[ -d $GOPATH/pkg ]] ; then
-    pushd $GOPATH/pkg
-    rm -Rf *
-    popd
-  fi
+  go clean -modcache
 
   go install github.com/onsi/ginkgo/ginkgo
 
