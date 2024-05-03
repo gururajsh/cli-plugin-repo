@@ -1,6 +1,6 @@
 ---
 applications:
-- name: plugins-dev
+- name: plugins
   env:
     GOPACKAGENAME: code.cloudfoundry.org/cli-plugin-repo
   instances: 4
