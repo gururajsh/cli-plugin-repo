@@ -6,17 +6,17 @@ on:
     branches:
       - 'oss-migration-test'
 jobs:
-  test:
-    runs-on: ubuntu-latest
-    steps:
-    - name: Checkout Plugin repo
-      uses: actions/checkout@v4
+  # test:
+  #   runs-on: ubuntu-latest
+  #   steps:
+  #   - name: Checkout Plugin repo
+  #     uses: actions/checkout@v4
 
-    - name: Set Up Go
-      uses: actions/setup-go@v5
-      with:
-        go-version-file: go.mod
-        check-latest: true
+  #   - name: Set Up Go
+  #     uses: actions/setup-go@v5
+  #     with:
+  #       go-version-file: go.mod
+  #       check-latest: true
 
     # - name: Run Tests
     #   run: |
