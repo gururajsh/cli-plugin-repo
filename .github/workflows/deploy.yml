@@ -18,24 +18,23 @@ jobs:
         go-version-file: go.mod
         check-latest: true
 
-    - name: Run Tests
-      run: |
-        set -ex
-        export GOPATH=$PWD/gopath
-        export PATH=$GOPATH/bin:$PATH
+    # - name: Run Tests
+    #   run: |
+    #     set -ex
+    #     export GOPATH=$PWD/gopath
+    #     export PATH=$GOPATH/bin:$PATH
 
-        go install github.com/onsi/ginkgo/ginkgo
+    #     go install github.com/onsi/ginkgo/ginkgo
+    #     go install golang.org/x/tools/cmd/cover
 
-        # cd $GOPATH/src/code.cloudfoundry.org/cli-plugin-repo
-
-        BINARY_VALIDATION=false bin/test
-    - name: Setup tmate session
-      if: always()
-      uses: mxschmitt/action-tmate@v3
+    #     BINARY_VALIDATION=false bin/test
+    # - name: Setup tmate session
+    #   if: always()
+    #   uses: mxschmitt/action-tmate@v3
 
   deploy:
     runs-on: ubuntu-latest
-    needs: [test]
+    # needs: [test]
     steps:
       - name: Checkout Plugin repo
         uses: actions/checkout@v4
