@@ -4,6 +4,6 @@ applications:
   env:
     GOPACKAGENAME: code.cloudfoundry.org/cli-plugin-repo
   instances: 4
-  buildpack: go_buildpack
+  # buildpack: go-latest
   memory: 128M
-  stack: cflinuxfs3
+  stack: cflinuxfs4

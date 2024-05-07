@@ -1,0 +1,54 @@
+jobs:
+- name: test
+  plan:
+  - get: cli-private
+  - get: cli-plugin-repo
+    trigger: true
+  - file: cli-private/ci/sc2-hosted-apps/plugin-repo/tasks/test.yml
+    task: test
+- name: deploy
+  plan:
+  - get: cli-plugin-repo
+    passed:
+    - test
+    trigger: true
+  - params:
+      command: push
+      manifest: cli-plugin-repo/manifest.yml
+      path: cli-plugin-repo
+      routes:
+      - plugins.cloudfoundry.org
+      - cf-cli-plugins.sc2-04-pcf1-apps.oc.vmware.com
+      - plugins.cfapps.io
+      strategy: rolling
+    put: cli-plugin-repo-pcf1
+  serial: true
+resource_types:
+- name: cf-cli-resource
+  source:
+    repository: harbor-repo.vmware.com/dockerhub-proxy-cache/nulldriver/cf-cli-resource
+    tag: latest
+  type: registry-image
+resources:
+- name: cli-plugin-repo
+  source:
+    branch: main
+    uri: https://github.com/cloudfoundry/cli-plugin-repo
+  type: git
+- name: cli-plugin-repo-pcf1
+  source:
+    api: https://api.sc2-04-pcf1-system.oc.vmware.com
+    cf_cli_version: 7
+    org: claw-cfcommunity
+    password: N66@.3Aw.Za5V.f@e1P
+    skip_cert_check: false
+    space: prod
+    username: svc.ui-sustainers@vmware.com
+  type: cf-cli-resource
+- name: cli-private
+  source:
+    branch: main
+    private_key: "-----BEGIN RSA PRIVATE KEY-----\n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\n-----END
+      RSA PRIVATE KEY-----                                                                                                                                        \n"
+    uri: git@github.com:cloudfoundry/cli-private
+  type: git
